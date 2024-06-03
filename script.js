@@ -1,24 +1,22 @@
 //your JS code here. If required.
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('myForm');
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("myForm");
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    const ageInput = document.getElementById('age');
-    const nameInput = document.getElementById('name');
+    const ageInput = document.getElementById("age");
+    const nameInput = document.getElementById("name");
 
     const age = parseInt(ageInput.value);
     const name = nameInput.value.trim();
 
-    // Validate inputs
-    if (!age || age < 1 || !name) {
-      alert('Please enter both age and name.');
+    if (!name || isNaN(age) || age <= 0) {
+      alert("Please enter valid name and age.");
       return;
     }
 
-    // Create a promise
-    const submissionPromise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         if (age >= 18) {
           resolve(`Welcome, ${name}. You can vote.`);
@@ -28,13 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 4000);
     });
 
-    // Handle promise resolution/rejection
-    submissionPromise
-      .then(message => {
+    promise
+      .then((message) => {
         alert(message);
       })
-      .catch(error => {
-        alert(error);
+      .catch((message) => {
+        alert(message);
       });
   });
 });
